@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?> <!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="dao.RegisterMapper">
+    <insert id="addRegister" parameterType="entity.Register">
+        insert into register(phoneNumber,verification) values (#{phoneNumber},#{verification})
+    </insert>
+    
+    <select id="getRegisterByVerification" parameterType="int" resultType="entity.Register">
+        select * from register where verification = #{verification}
+    </select>
+
+    <select id="getRegisterByPhoneNumber" resultType="entity.Register">
+        select * from register where phoneNumber = #{phoneNumber}
+    </select>
+
+    <update id="updateRegister" parameterType="entity.Register">
+        update register set verification = #{verification} where phoneNumber = #{phoneNumber}
+    </update>
+</mapper>
