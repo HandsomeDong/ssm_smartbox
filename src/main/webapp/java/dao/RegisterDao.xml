@@ -17,4 +17,12 @@
     <update id="updateRegister" parameterType="entity.Register">
         update register set verification = #{verification} where phoneNumber = #{phoneNumber}
     </update>
+
+    <select id="verify" parameterType="map" resultType="int">
+        select count(*) from register where phoneNumber = #{phoneNumber} and verification = #{verification}
+    </select>
+
+    <delete id="deleteRegister">
+        delete from register where phoneNumber = #{phoneNumber}
+    </delete>
 </mapper>

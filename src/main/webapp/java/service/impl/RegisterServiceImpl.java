@@ -9,7 +9,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Service;
 import service.RegisterService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class RegisterServiceImpl implements RegisterService {
@@ -41,6 +43,30 @@ public class RegisterServiceImpl implements RegisterService {
         } else {
             return 0;
         }
+    }
+
+    //判断验证码是否正确
+    public boolean isValid(String phoneNumber, int verification) {
+        boolean isValid = false;
+
+        Map<String, Object> params = new HashMap<>();
+        params.put("phoneNumber", phoneNumber);
+        params.put("verification", verification);
+        int count = registerMapper.verify(params);
+        if (count == 1){
+            isValid = true;
+        }
+        return isValid;
+    }
+
+
+    public boolean deleteRegister(String phoneNumber){
+        boolean success = false;
+        int result = registerMapper.deleteRegister(phoneNumber);
+        if (result > 0) {
+            success = true;
+        }
+        return success;
     }
 
     private int updateRegister(Register register) {
