@@ -85,8 +85,8 @@ public class RegisterServiceImpl implements RegisterService {
 
     public boolean isRegistered(String phoneNumber) {
         boolean isRegistered = false;
-        List<User> users = userMapper.selectUser(phoneNumber);
-        if (users.size() > 0) {
+        User user = userMapper.selectUserById(phoneNumber);
+        if (user != null) {
             isRegistered = true;
         }
         return isRegistered;

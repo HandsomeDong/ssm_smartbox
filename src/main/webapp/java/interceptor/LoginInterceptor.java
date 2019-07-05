@@ -10,7 +10,6 @@ public class LoginInterceptor implements HandlerInterceptor {
 //        if (token == null){
 //            return false;
 //        }
-
         return true;
     }
 

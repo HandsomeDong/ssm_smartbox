@@ -4,6 +4,7 @@ import entity.User;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Map;
 
 @Repository
 public interface UserMapper {
@@ -11,5 +12,7 @@ public interface UserMapper {
 
     int addUser(User user);
 
-    List<User> selectUser(String id);
+    User selectUserById(String id);
+
+    User login(Map params);
 }

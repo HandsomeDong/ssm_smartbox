@@ -1,6 +1,5 @@
 package controller;
 
-import entity.Register;
 import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -42,7 +41,6 @@ public class RegisterController {
         } else {
             result.put("status", -1);
         }
-
         return result;
     }
 

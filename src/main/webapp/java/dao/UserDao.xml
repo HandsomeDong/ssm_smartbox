@@ -10,7 +10,11 @@
         insert into user(id,password,name) values(#{id},#{password},#{name})
     </insert>
 
-    <select id="selectUser" resultType="entity.User">
+    <select id="selectUserById" resultType="entity.User">
         select * from user where id = #{id}
+    </select>
+
+    <select id="login" resultType="entity.User">
+        select * from user where id = #{id} and password = #{password}
     </select>
 </mapper>

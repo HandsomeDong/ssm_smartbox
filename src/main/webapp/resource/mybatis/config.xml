@@ -13,6 +13,7 @@
     <mappers>
         <mapper resource="dao/UserDao.xml"/>
         <mapper resource="dao/RegisterDao.xml"/>
+        <mapper resource="dao/BoxDao.xml"/>
     </mappers>
 </configuration>
 

@@ -97,6 +97,11 @@
       <artifactId>spring-tx</artifactId>
       <version>${spring.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.springframework</groupId>
+      <artifactId>spring-test</artifactId>
+      <version>${spring.version}</version>
+    </dependency>
 
     <!-- 导入dbcp的jar包，用来在applicationContext.xml中配置数据库 -->
     <dependency>
@@ -110,6 +115,13 @@
       <groupId>com.github.qcloudsms</groupId>
       <artifactId>qcloudsms</artifactId>
       <version>1.0.6</version>
+    </dependency>
+
+    <!--json token web-->
+    <dependency>
+      <groupId>com.auth0</groupId>
+      <artifactId>java-jwt</artifactId>
+      <version>3.1.0</version>
     </dependency>
 
     <!-- JSON依赖 -->

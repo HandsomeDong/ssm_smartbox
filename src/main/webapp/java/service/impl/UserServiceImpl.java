@@ -6,7 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import service.UserService;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class UserServiceImpl implements UserService {
@@ -27,7 +29,20 @@ public class UserServiceImpl implements UserService {
         if (result > 0) {
             success = true;
         }
-
         return success;
+    }
+
+    public User getUserData(String id){
+        User user = userMapper.selectUserById(id);
+        return user;
+    }
+
+    @Override
+    public User login(String id, String password){
+        Map<String, String> params = new HashMap<>();
+        params.put("id", id);
+        params.put("password", password);
+        User user = userMapper.login(params);
+        return user;
     }
 }
