@@ -1,11 +1,15 @@
 package entity;
 
+import java.util.List;
+
 public class User {
     private String id;
 
     private String password;
 
     private String name;
+
+    private List<MedicineOrder> medicineOrders;
 
     public String getId() {
         return id;
@@ -29,5 +33,13 @@ public class User {
 
     public void setName(String userName) {
         this.name = userName;
+    }
+
+    public List<MedicineOrder> getMedicineOrders() {
+        return medicineOrders;
+    }
+
+    public void setMedicineOrders(List<MedicineOrder> medicineOrders) {
+        this.medicineOrders = medicineOrders;
     }
 }

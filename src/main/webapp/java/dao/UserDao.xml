@@ -17,4 +17,41 @@
     <select id="login" resultType="entity.User">
         select * from user where id = #{id} and password = #{password}
     </select>
+
+    <resultMap type="entity.User" id="user">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <collection property="medicineOrders" ofType="entity.MedicineOrder" column="id">
+            <id column="mid" property="id"/><!-- 这里的column对应的是下面查询的别名，而不是表字段名 -->
+            <result column="status" property="status"/><!-- property对应JavaBean中的属性名 -->
+            <result column="bid" property="bid"/>
+            <result column="verification" property="verification"/>
+            <result column="medicine" property="medicine"/>
+            <result column="update_time" property="updateTime"/>
+            <result column="create_time" property="createTime"/>
+        </collection>
+    </resultMap>
+
+    <!-- 查询某用户的所有药品订单 -->
+    <select id="getUserWithMedicineOrders" resultMap="user">
+		SELECT
+		  u.id,
+		  u.name,
+		  m.id,
+		  m.status,
+		  m.bid,
+		  m.verification,
+		  m.medicine,
+		  m.update_time,
+		  m.create_time
+		FROM
+		  user u
+		LEFT JOIN
+		  medicine_order m ON m.uid = u.id
+		where
+		  u.id = #{id};
+
+	</select>
+
 </mapper>

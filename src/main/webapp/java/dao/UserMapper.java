@@ -15,4 +15,6 @@ public interface UserMapper {
     User selectUserById(String id);
 
     User login(Map params);
+
+    User getUserWithMedicineOrders(String id);
 }

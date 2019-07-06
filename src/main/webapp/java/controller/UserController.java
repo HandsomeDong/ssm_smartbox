@@ -47,7 +47,6 @@ public class UserController {
             result.put("userData", user);
             result.put("status", 1);
         }
-
         return result;
     }
 }

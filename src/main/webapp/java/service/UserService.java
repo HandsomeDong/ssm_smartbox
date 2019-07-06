@@ -1,5 +1,6 @@
 package service;
 
+import entity.MedicineOrder;
 import entity.User;
 
 import java.util.List;
@@ -9,4 +10,5 @@ public interface UserService {
     boolean addUser(User user);
     User getUserData(String id);
     User login(String id, String password);
+    List<MedicineOrder> getMedicineOrders(String id);
 }

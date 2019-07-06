@@ -35,4 +35,10 @@ public class JwtUtil {
 
         return jwt;
     }
+
+    public String getUserIdByToken(String token) throws JWTVerificationException {
+        DecodedJWT jwt = parseToken(token);
+        String userId = jwt.getClaim("userId").asString();
+        return userId;
+    }
 }

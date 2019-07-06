@@ -1,6 +1,7 @@
 package service.impl;
 
 import dao.UserMapper;
+import entity.MedicineOrder;
 import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -44,5 +45,12 @@ public class UserServiceImpl implements UserService {
         params.put("password", password);
         User user = userMapper.login(params);
         return user;
+    }
+
+    @Override
+    public List<MedicineOrder> getMedicineOrders(String id) {
+        User user = userMapper.getUserWithMedicineOrders(id);
+        List<MedicineOrder> medicineOrders = user.getMedicineOrders();
+        return medicineOrders;
     }
 }
