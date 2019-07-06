@@ -1,6 +1,6 @@
 package service.impl;
 
-import dao.MedicineOrderMapper;
+import mapper.MedicineOrderMapper;
 import entity.MedicineOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

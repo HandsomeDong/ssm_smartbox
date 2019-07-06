@@ -1,6 +1,6 @@
 package service.impl;
 
-import dao.UserMapper;
+import mapper.UserMapper;
 import entity.MedicineOrder;
 import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;

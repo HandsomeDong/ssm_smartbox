@@ -25,8 +25,8 @@ public class OrderController {
     @RequestMapping(value = "/medicine", method = RequestMethod.GET)
     public Map getMedicineOrders(HttpServletRequest request, String token){
         Map<String,Object> map = new HashMap<>();
-        String userId = jwtUtil.getUserIdByToken(token);
-//        String userId = jwtUtil.getUserIdByToken(request.getHeader("token"));
+//        String userId = jwtUtil.getUserIdByToken(token);
+        String userId = jwtUtil.getUserIdByToken(request.getHeader("token"));
         List<MedicineOrder> medicineOrders = userService.getMedicineOrders(userId);
         map.put("medicineOrders", medicineOrders);
         return map;

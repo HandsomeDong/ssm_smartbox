@@ -47,9 +47,10 @@
         </property>
     </bean>
 
-    <!-- DAO接口所在包名，Spring会自动查找其下的类 -->
+    <!-- mapper扫描器，Spring会自动查找其下的接口 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="dao"/>
+        <property name="basePackage" value="mapper" />
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
     </bean>
     <!-- (事务管理)transaction manager, use JtaTransactionManager for global tx -->
     <bean id="transactionManager"

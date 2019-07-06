@@ -1,4 +1,4 @@
-package dao;
+package mapper;
 
 import entity.MedicineOrder;
 

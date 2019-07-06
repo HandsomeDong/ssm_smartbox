@@ -1,6 +1,6 @@
 package service.impl;
 
-import dao.BoxMapper;
+import mapper.BoxMapper;
 import entity.Box;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

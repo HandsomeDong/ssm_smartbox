@@ -1,7 +1,7 @@
 package service.impl;
 
-import dao.RegisterMapper;
-import dao.UserMapper;
+import mapper.RegisterMapper;
+import mapper.UserMapper;
 import entity.Register;
 import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;

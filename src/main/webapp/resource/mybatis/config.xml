@@ -14,10 +14,10 @@
     </settings>
 
     <mappers>
-        <mapper resource="dao/UserDao.xml"/>
-        <mapper resource="dao/RegisterDao.xml"/>
-        <mapper resource="dao/BoxDao.xml"/>
-        <mapper resource="dao/MedicineOrderDao.xml"/>
+        <mapper resource="mapper/UserDao.xml"/>
+        <mapper resource="mapper/RegisterDao.xml"/>
+        <mapper resource="mapper/BoxDao.xml"/>
+        <mapper resource="mapper/MedicineOrderDao.xml"/>
     </mappers>
 </configuration>
 
