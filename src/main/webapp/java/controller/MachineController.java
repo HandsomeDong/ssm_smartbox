@@ -86,6 +86,7 @@ public class MachineController {
             result.put("status", -1);
         } else {
             result.put("status", 1);
+            result.put("id", medicineOrder.getId());
             result.put("boxId", medicineOrder.getBid());
             result.put("medicine", medicineOrder.getMedicine());
         }
