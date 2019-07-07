@@ -6,5 +6,29 @@
         select * from medicine_order
     </select>
 
+    <update id="transit" parameterType="map">
+        update medicine_order set status = 2, bid = #{bid} where id = #{id}
+    </update>
+
+    <update id="arrived" parameterType="map">
+        update medicine_order set status = 3, verification = #{verification} where id = #{id}
+    </update>
+
+    <select id="countVerification" resultType="int">
+        select count(*) from medicine_order where verification = #{verification}
+    </select>
+
+    <select id="getOrderById" resultType="entity.MedicineOrder">
+        select * from medicine_order where id = #{id}
+    </select>
+
+    <select id="getOrderByVerification" resultType="entity.MedicineOrder">
+        select * from medicine_order where verification = #{verification}
+    </select>
+
+    <delete id="deleteOrderById" parameterType="String">
+        delete from medicine_order where id = #{id}
+    </delete>
+
 
 </mapper>

@@ -5,4 +5,8 @@
     <select id="listAll" resultType="entity.HistoryOrder">
         select * from history_order
     </select>
+
+    <insert id="insert" parameterType="entity.HistoryOrder">
+        insert into history_order(id,medicine,uid,create_time) values (#{id},#{medicine},#{uid},#{createTime})
+    </insert>
 </mapper>

@@ -14,7 +14,7 @@ public class SmsSender {
     @Autowired
     private ApplicationContext applicationContext;
 
-    public void sendVerification(String phoneNumber, int verification){
+    public void sendRegisterVerification(String phoneNumber, int verification){
         String[] phoneNumbers = new String[1];
         String[] params = new String[1];
         phoneNumbers[0] = phoneNumber;
@@ -23,7 +23,17 @@ public class SmsSender {
         SmsProvider smsProvider = (SmsProvider) applicationContext.getBean("registerSms");
 
         send(phoneNumbers, params, smsProvider);
+    }
 
+    public void sendMedicineVerification(String phoneNumber, int verification, int boxId){
+        String[] phoneNumbers = new String[1];
+        String[] params = new String[2];
+        phoneNumbers[0] = phoneNumber;
+        params[0] = String.valueOf(verification);
+        params[1] = String.valueOf(boxId);
+
+        SmsProvider smsProvider = (SmsProvider) applicationContext.getBean("medicineSms");
+        send(phoneNumbers, params, smsProvider);
     }
 
     private void send(String[] phoneNumbers, String[] params, SmsProvider smsProvider){

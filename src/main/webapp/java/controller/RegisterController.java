@@ -45,7 +45,7 @@ public class RegisterController {
     }
 
     //    status状态，-1则表示该手机号已经注册，0表示未知错误，1表示发送验证码成功
-    @RequestMapping(value = "/sendverification", method = RequestMethod.GET)
+    @RequestMapping(value = "/send", method = RequestMethod.GET)
     public Map sendVerification(String phoneNumber) {
         Map<String, Object> result = new HashMap<>();
 
@@ -59,7 +59,7 @@ public class RegisterController {
         } else {
             int verification = registerService.addRegister(phoneNumber);
             if (verification != 0) {
-                smsSender.sendVerification("18814215401", verification);
+                smsSender.sendRegisterVerification(phoneNumber, verification);
                 result.put("status", 1);
             } else {
                 result.put("status", 0);

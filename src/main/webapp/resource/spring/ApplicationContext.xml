@@ -64,4 +64,10 @@
         <property name="appKey" value="${appkey}"/>
         <property name="templateId" value="${register}"/>
     </bean>
+
+    <bean name="medicineSms" class="entity.SmsProvider">
+        <property name="appId" value="${appid}"/>
+        <property name="appKey" value="${appkey}"/>
+        <property name="templateId" value="${take_medicine}"/>
+    </bean>
 </beans>

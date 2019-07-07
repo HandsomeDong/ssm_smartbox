@@ -1,7 +1,10 @@
 package entity;
 
+import org.springframework.stereotype.Component;
+
 import java.sql.Timestamp;
 
+@Component("nullHistoryOrder")
 public class HistoryOrder {
     //订单编号
     private String id;
