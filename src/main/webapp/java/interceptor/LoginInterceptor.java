@@ -6,7 +6,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class LoginInterceptor implements HandlerInterceptor {
     @Override
     public boolean preHandle(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse, Object o) throws Exception {
-        String token = httpServletRequest.getParameter("token");
+        String token = httpServletRequest.getHeader("token");
         if (token == null){
             return false;
         }

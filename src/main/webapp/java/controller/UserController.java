@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 import service.impl.UserServiceImpl;
 import service.jwt.JwtUtil;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,9 +37,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "/data", method = RequestMethod.GET)
-    public Map getUserData(String token){
+    public Map getUserData(HttpServletRequest request){
         Map<String, Object> result = new HashMap<>();
-        DecodedJWT parse = jwtUtil.parseToken(token);
+        DecodedJWT parse = jwtUtil.parseToken(request.getHeader("token"));
         String userId = parse.getClaim("userId").asString();
         User user = userService.getUserData(userId);
         if (user == null) {

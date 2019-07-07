@@ -1,6 +1,6 @@
-create database smartbox;
+create database ssm_smartbox;
 
-use smartbox;
+use ssm_smartbox;
 
 create table user(id char(11) primary key, password char(20) not null, name char(20) not null) default charset=utf8;
 

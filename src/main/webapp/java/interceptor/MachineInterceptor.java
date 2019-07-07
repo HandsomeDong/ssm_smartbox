@@ -12,8 +12,8 @@ public class MachineInterceptor implements HandlerInterceptor {
 
     @Override
     public boolean preHandle(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse, Object o) throws Exception {
-        String machineId = httpServletRequest.getParameter("machineId");
-        String password = httpServletRequest.getParameter("password");
+        String machineId = httpServletRequest.getHeader("machineId");
+        String password = httpServletRequest.getHeader("password");
         if ((machineId.equals(this.machineId) && password.equals(this.password))) {
             return true;
         }
