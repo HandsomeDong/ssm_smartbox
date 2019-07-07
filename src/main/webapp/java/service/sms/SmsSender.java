@@ -29,10 +29,21 @@ public class SmsSender {
         String[] phoneNumbers = new String[1];
         String[] params = new String[2];
         phoneNumbers[0] = phoneNumber;
-        params[0] = String.valueOf(verification);
-        params[1] = String.valueOf(boxId);
+        params[0] = String.valueOf(boxId);
+        params[1] = String.valueOf(verification);
+
 
         SmsProvider smsProvider = (SmsProvider) applicationContext.getBean("medicineSms");
+        send(phoneNumbers, params, smsProvider);
+    }
+
+    public void sendFinish(String phoneNumber, String orderId){
+        String[] phoneNumbers = new String[1];
+        String[] params = new String[1];
+        phoneNumbers[0] = phoneNumber;
+        params[0] = orderId;
+
+        SmsProvider smsProvider = (SmsProvider) applicationContext.getBean("finishSms");
         send(phoneNumbers, params, smsProvider);
     }
 

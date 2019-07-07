@@ -106,6 +106,7 @@ public class MachineController {
             historyOrder.setMedicine(medicineOrder.getMedicine());
             historyOrder.setUid(medicineOrder.getUid());
             if (historyOrderService.add(historyOrder) && boxService.setEmpty(medicineOrder.getBid())) {
+                smsSender.sendFinish(medicineOrder.getUid(), medicineOrder.getId());
                 result.put("status", 1);
             } else {
                 result.put("status", -1);
