@@ -46,7 +46,7 @@
         </property>
     </bean>
 
-    <!-- mapper扫描器，Spring会自动查找其下的接口 -->
+    <!-- mapper扫描器，Spring会自动查找其下的接口，注意接口要和xml文件同名且在同一文件夹下 -->
     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
         <property name="basePackage" value="mapper"/>
         <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>

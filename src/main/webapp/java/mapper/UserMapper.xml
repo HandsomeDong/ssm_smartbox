@@ -18,13 +18,14 @@
         select * from user where id = #{id} and password = #{password}
     </select>
 
-    <resultMap type="entity.User" id="user">
+    <resultMap type="entity.User" id="userMedicineOrders">
         <id column="id" property="id"/>
         <result column="name" property="name"/>
         <result column="password" property="password"/>
         <collection property="medicineOrders" ofType="entity.MedicineOrder" column="id">
             <id column="mid" property="id"/><!-- 这里的column对应的是下面查询的别名，而不是表字段名 -->
             <result column="status" property="status"/><!-- property对应JavaBean中的属性名 -->
+            <result column="uid" property="uid"/>
             <result column="bid" property="bid"/>
             <result column="verification" property="verification"/>
             <result column="medicine" property="medicine"/>
@@ -33,12 +34,26 @@
         </collection>
     </resultMap>
 
+    <resultMap type="entity.User" id="userHistoryOrders">
+        <id column="id" property="id"/>
+        <result column="name" property="name"/>
+        <result column="password" property="password"/>
+        <collection property="historyOrders" ofType="entity.HistoryOrder" column="id">
+            <id column="hid" property="id"/>
+            <result column="medicine" property="medicine"/>
+            <result column="uid" property="uid"/>
+            <result column="finish_time" property="finishTime"/>
+            <result column="create_time" property="createTime"/>
+        </collection>
+    </resultMap>
+
     <!-- 查询某用户的所有药品订单 -->
-    <select id="getUserWithMedicineOrders" resultMap="user">
+    <select id="getUserWithMedicineOrders" resultMap="userMedicineOrders">
 		SELECT
 		  u.id,
 		  u.name,
-		  m.id,
+		  m.id as mid,
+		  m.uid,
 		  m.status,
 		  m.bid,
 		  m.verification,
@@ -51,7 +66,24 @@
 		  medicine_order m ON m.uid = u.id
 		where
 		  u.id = #{id};
+	</select>
 
+    <!-- 查询某用户的所有历史订单 -->
+    <select id="getUserWithHistoryOrders" resultMap="userHistoryOrders">
+		SELECT
+		  u.id,
+		  u.name,
+		  h.uid,
+		  h.id as hid,
+		  h.medicine,
+		  h.finish_time,
+		  h.create_time
+		FROM
+		  user u
+		LEFT JOIN
+		  history_order h ON h.uid = u.id
+		where
+		  u.id = #{id};
 	</select>
 
 </mapper>

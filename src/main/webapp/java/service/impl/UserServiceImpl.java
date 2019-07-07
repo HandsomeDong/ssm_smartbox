@@ -1,5 +1,6 @@
 package service.impl;
 
+import entity.HistoryOrder;
 import mapper.UserMapper;
 import entity.MedicineOrder;
 import entity.User;
@@ -52,5 +53,12 @@ public class UserServiceImpl implements UserService {
         User user = userMapper.getUserWithMedicineOrders(id);
         List<MedicineOrder> medicineOrders = user.getMedicineOrders();
         return medicineOrders;
+    }
+
+    @Override
+    public List<HistoryOrder> getHistoryOrders(String id) {
+        User user = userMapper.getUserWithHistoryOrders(id);
+        List<HistoryOrder> historyOrders = user.getHistoryOrders();
+        return historyOrders;
     }
 }

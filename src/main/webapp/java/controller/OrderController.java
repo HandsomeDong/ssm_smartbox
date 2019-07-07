@@ -1,6 +1,7 @@
 package controller;
 
 
+import entity.HistoryOrder;
 import entity.MedicineOrder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -29,6 +30,15 @@ public class OrderController {
         String userId = jwtUtil.getUserIdByToken(request.getHeader("token"));
         List<MedicineOrder> medicineOrders = userService.getMedicineOrders(userId);
         map.put("medicineOrders", medicineOrders);
+        return map;
+    }
+
+    @RequestMapping(value = "/history", method = RequestMethod.GET)
+    public Map getHistoryOrders(HttpServletRequest request, String token){
+        Map<String,Object> map = new HashMap<>();
+        String userId = jwtUtil.getUserIdByToken(request.getHeader("token"));
+        List<HistoryOrder> historyOrders = userService.getHistoryOrders(userId);
+        map.put("historyOrders", historyOrders);
         return map;
     }
 

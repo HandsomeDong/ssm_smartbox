@@ -1,5 +1,6 @@
 package service;
 
+import entity.HistoryOrder;
 import entity.MedicineOrder;
 import entity.User;
 
@@ -11,4 +12,5 @@ public interface UserService {
     User getUserData(String id);
     User login(String id, String password);
     List<MedicineOrder> getMedicineOrders(String id);
+    List<HistoryOrder> getHistoryOrders(String id);
 }

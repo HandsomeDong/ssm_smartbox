@@ -4,10 +4,10 @@ import java.sql.Timestamp;
 
 public class MedicineOrder {
     //订单编号
-    private int id;
-    //订单状态
+    private String id;
+    //订单状态，1正在配药，2正在运送，3在柜子里
     private int status;
-    //所在柜子编号
+    //所在柜子编号，0表示正在配药，还没有分配柜子
     private int bid;
     //验证码
     private int verification;
@@ -20,11 +20,11 @@ public class MedicineOrder {
     //订单创建的时间
     private Timestamp createTime;
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 

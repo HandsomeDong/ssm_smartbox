@@ -11,6 +11,8 @@ public class User {
 
     private List<MedicineOrder> medicineOrders;
 
+    private List<HistoryOrder> historyOrders;
+
     public String getId() {
         return id;
     }
@@ -41,5 +43,13 @@ public class User {
 
     public void setMedicineOrders(List<MedicineOrder> medicineOrders) {
         this.medicineOrders = medicineOrders;
+    }
+
+    public List<HistoryOrder> getHistoryOrders() {
+        return historyOrders;
+    }
+
+    public void setHistoryOrders(List<HistoryOrder> historyOrders) {
+        this.historyOrders = historyOrders;
     }
 }
