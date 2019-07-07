@@ -13,12 +13,12 @@
         <setting name="mapUnderscoreToCamelCase" value="true" />
     </settings>
 
-    <mappers>
-        <mapper resource="mapper/UserDao.xml"/>
-        <mapper resource="mapper/RegisterDao.xml"/>
-        <mapper resource="mapper/BoxDao.xml"/>
-        <mapper resource="mapper/MedicineOrderDao.xml"/>
-    </mappers>
+    <!--<mappers>-->
+        <!--<mapper resource="mapper/UserDao.xml"/>-->
+        <!--<mapper resource="mapper/RegisterDao.xml"/>-->
+        <!--<mapper resource="mapper/BoxDao.xml"/>-->
+        <!--<mapper resource="mapper/MedicineOrderDao.xml"/>-->
+    <!--</mappers>-->
 </configuration>
 
 
