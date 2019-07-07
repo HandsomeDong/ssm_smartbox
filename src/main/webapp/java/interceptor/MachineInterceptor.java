@@ -1,16 +1,23 @@
 package interceptor;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
-public class LoginInterceptor implements HandlerInterceptor {
+public class MachineInterceptor implements HandlerInterceptor {
+    @Value("${machineId}")
+    private String machineId;
+    @Value("${password}")
+    private String password;
+
     @Override
     public boolean preHandle(javax.servlet.http.HttpServletRequest httpServletRequest, javax.servlet.http.HttpServletResponse httpServletResponse, Object o) throws Exception {
-        String token = httpServletRequest.getParameter("token");
-        if (token == null){
-            return false;
+        String machineId = httpServletRequest.getParameter("machineId");
+        String password = httpServletRequest.getParameter("password");
+        if ((machineId.equals(this.machineId) && password.equals(this.password))) {
+            return true;
         }
-        return true;
+        return false;
     }
 
     @Override

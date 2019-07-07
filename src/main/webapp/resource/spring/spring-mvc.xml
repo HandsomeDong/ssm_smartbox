@@ -21,9 +21,17 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/machine/**"/>
             <mvc:exclude-mapping path="/register/**"/>
             <mvc:exclude-mapping path="/user/login"/>
             <bean class="interceptor.LoginInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/machine/**"/>
+            <bean class="interceptor.MachineInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 
@@ -32,4 +40,7 @@
         <property name="prefix" value="/WEB-INF/" />
         <property name="suffix" value=".jsp" />
     </bean>
+
+    <!-- 加载配置文件,如果springMVC不加载的话，那么控制器、拦截器这些就读取不到配置文件，所以ApplicationContext加载，这里也加载 -->
+    <context:property-placeholder location="classpath:properties/*.properties"/>
 </beans>
