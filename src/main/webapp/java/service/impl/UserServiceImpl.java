@@ -40,12 +40,12 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User login(String id, String password){
+    public User login(User user){
         Map<String, String> params = new HashMap<>();
-        params.put("id", id);
-        params.put("password", password);
-        User user = userMapper.login(params);
-        return user;
+        params.put("id", user.getId());
+        params.put("password", user.getPassword());
+        User userData = userMapper.login(params);
+        return userData;
     }
 
     @Override

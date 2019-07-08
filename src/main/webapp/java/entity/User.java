@@ -1,7 +1,10 @@
 package entity;
 
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 
+@Component("user")
 public class User {
     private String id;
 

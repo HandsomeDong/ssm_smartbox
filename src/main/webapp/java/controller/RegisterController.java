@@ -1,7 +1,10 @@
 package controller;
 
 import entity.User;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.ApplicationContext;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -15,7 +18,8 @@ import java.util.Map;
 @RestController
 @RequestMapping("/register")
 public class RegisterController {
-
+    @Autowired
+    private ApplicationContext context;
     @Autowired
     private SmsSender smsSender;
     @Autowired
@@ -24,10 +28,17 @@ public class RegisterController {
     private UserServiceImpl userService;
 
     //status    1注册成功  0未知错误   -1验证码错误
-    @RequestMapping(value = "/register", method = RequestMethod.GET)
-    public Map register(User user, int verification) {
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public Map register(@RequestBody Map<String, Object> params) {
         Map<String, Object> result = new HashMap<>();
-
+        User user = (User) context.getBean("user");
+        String id = (String) params.get("id");
+        String password = (String) params.get("password");
+        String name = (String) params.get("name");
+        int verification = (Integer) params.get("verification");
+        user.setId(id);
+        user.setPassword(password);
+        user.setName(name);
         boolean isValid = registerService.isValid(user.getId(), verification);
         if (isValid) {
             //先添加到用户表，再从验证码表删除
@@ -41,6 +52,7 @@ public class RegisterController {
         } else {
             result.put("status", -1);
         }
+
         return result;
     }
 

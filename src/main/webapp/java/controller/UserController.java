@@ -3,6 +3,7 @@ package controller;
 import com.auth0.jwt.interfaces.DecodedJWT;
 import entity.User;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -22,15 +23,15 @@ public class UserController {
     private JwtUtil jwtUtil;
 
     //-1表示账号密码错误  1表示登陆成功
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public Map login(String userId, String password) {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public Map login(@RequestBody User user) {
         Map<String, Object> result = new HashMap<>();
-        User user = userService.login(userId, password);
-        if (user == null) {
+        User userData = userService.login(user);
+        if (userData == null) {
             result.put("status", -1);
         } else {
-            result.put("token", jwtUtil.createToken(userId));
-            result.put("userData", user);
+            result.put("token", jwtUtil.createToken(userData.getId()));
+            result.put("userData", userData);
             result.put("status", 1);
         }
         return result;

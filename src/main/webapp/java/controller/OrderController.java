@@ -24,7 +24,7 @@ public class OrderController {
     private JwtUtil jwtUtil;
 
     @RequestMapping(value = "/medicine", method = RequestMethod.GET)
-    public Map getMedicineOrders(HttpServletRequest request, String token){
+    public Map getMedicineOrders(HttpServletRequest request){
         Map<String,Object> map = new HashMap<>();
         String userId = jwtUtil.getUserIdByToken(request.getHeader("token"));
         List<MedicineOrder> medicineOrders = userService.getMedicineOrders(userId);
@@ -33,7 +33,7 @@ public class OrderController {
     }
 
     @RequestMapping(value = "/history", method = RequestMethod.GET)
-    public Map getHistoryOrders(HttpServletRequest request, String token){
+    public Map getHistoryOrders(HttpServletRequest request){
         Map<String,Object> map = new HashMap<>();
         String userId = jwtUtil.getUserIdByToken(request.getHeader("token"));
         List<HistoryOrder> historyOrders = userService.getHistoryOrders(userId);
