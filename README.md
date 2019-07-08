@@ -32,7 +32,7 @@
 
 克隆或下载该项目后，还需要在webapp/resource/下新建文件夹properties，并且新建三个配置文件，分别是**jdbc.properties**、**machine.properties**和**qcloud.properties**，为了信息安全，我gitignoire了。
 
-#### jdbc.properties
+### jdbc.properties
 数据库的配置
 
 ```
@@ -52,7 +52,7 @@ druid_timeBetweenEvictionRunsMillis=60000
 druid_minEvictableIdleTimeMillis=300000
 ```
 
-#### machine.properties
+### machine.properties
 智能药柜硬件更新订单前会被拦截器拦截，验证身份。
 
 ```
@@ -60,7 +60,7 @@ machineId=XXX
 password=XXX
 ```
 
-#### qcloud.properties
+### qcloud.properties
 这个是腾讯云短信的配置，发送短信主要需要三个参数，appid、appkey和短信模版id。该项目需要发送三种短信，注册验证码、取药验证码和取药完成短信。**想要把项目跑起来，没有腾讯云短信配置的话，这里随便填就行了，顶多就不发送短信。**
 [腾讯云短信详细使用方式点这里。](https://cloud.tencent.com/document/product/382/13613)
 
