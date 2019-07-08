@@ -28,7 +28,7 @@ public class OrderController {
         Map<String,Object> map = new HashMap<>();
         String userId = jwtUtil.getUserIdByToken(request.getHeader("token"));
         List<MedicineOrder> medicineOrders = userService.getMedicineOrders(userId);
-        map.put("medicineOrders", medicineOrders);
+        map.put("orders", medicineOrders);
         return map;
     }
 
@@ -37,7 +37,7 @@ public class OrderController {
         Map<String,Object> map = new HashMap<>();
         String userId = jwtUtil.getUserIdByToken(request.getHeader("token"));
         List<HistoryOrder> historyOrders = userService.getHistoryOrders(userId);
-        map.put("historyOrders", historyOrders);
+        map.put("orders", historyOrders);
         return map;
     }
 }
