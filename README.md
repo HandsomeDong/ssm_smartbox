@@ -39,10 +39,10 @@
 #驱动
 mysql_driverClassName=com.mysql.jdbc.Driver
 #url
-mysql_url=jdbc:mysql://localhost:3306/ssm_smartbox
+mysql_url=jdbc:mysql://XXX:3306/ssm_smartbox
 #mysql用户名和密码
-mysql_username=root
-mysql_password=123yhd...
+mysql_username=XXX
+mysql_password=XXX
 
 druid_initialSize=1
 druid_minIdle=1
