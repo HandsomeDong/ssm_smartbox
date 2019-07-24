@@ -4,8 +4,6 @@ use ssm_smartbox;
 
 create table user(id char(11) primary key, password char(20) not null, name char(20) not null) default charset=utf8;
 
-create table register(phoneNumber char(11) primary key, verification int) default charset=utf8;
-
 create table box(id int primary key, status int);
 
 create table medicine_order(

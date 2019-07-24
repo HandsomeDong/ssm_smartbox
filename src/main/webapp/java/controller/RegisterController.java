@@ -1,7 +1,6 @@
 package controller;
 
 import entity.User;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -35,13 +34,12 @@ public class RegisterController {
         String id = (String) params.get("id");
         String password = (String) params.get("password");
         String name = (String) params.get("name");
-        int verification = (Integer) params.get("verification");
+        String verification = (String) params.get("verification");
         user.setId(id);
         user.setPassword(password);
         user.setName(name);
         boolean isValid = registerService.isValid(user.getId(), verification);
         if (isValid) {
-            //先添加到用户表，再从验证码表删除
             boolean successAdd = userService.addUser(user);
             boolean successDelete = registerService.deleteRegister(user.getId());
             if (successAdd && successDelete) {
@@ -69,13 +67,9 @@ public class RegisterController {
         if (registerService.isRegistered(phoneNumber)) {
             result.put("status", -1);
         } else {
-            int verification = registerService.addRegister(phoneNumber);
-            if (verification != 0) {
-                smsSender.sendRegisterVerification(phoneNumber, verification);
-                result.put("status", 1);
-            } else {
-                result.put("status", 0);
-            }
+            String verification = registerService.addRegister(phoneNumber);
+            smsSender.sendRegisterVerification(phoneNumber, verification);
+            result.put("status", 1);
         }
         return result;
     }

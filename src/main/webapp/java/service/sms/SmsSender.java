@@ -14,14 +14,13 @@ public class SmsSender {
     @Autowired
     private ApplicationContext applicationContext;
 
-    public void sendRegisterVerification(String phoneNumber, int verification){
+    public void sendRegisterVerification(String phoneNumber, String verification){
         String[] phoneNumbers = new String[1];
         String[] params = new String[1];
         phoneNumbers[0] = phoneNumber;
-        params[0] = String.valueOf(verification);
+        params[0] = verification;
 
         SmsProvider smsProvider = (SmsProvider) applicationContext.getBean("registerSms");
-
         send(phoneNumbers, params, smsProvider);
     }
 
