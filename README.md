@@ -21,6 +21,7 @@
 * jdk1.8
 * tomcat9.0
 * mysql5.7
+* redis4.0.8
 * Spring4.3
 * Spring MVC4.3
 * Mybatis3.4
@@ -30,7 +31,7 @@
 
 >上面列举了大部分主要的jar包，详细具体可查看pom.xml。jackson主要用于处理请求参数，qcloundsms是腾讯云短信SDK，用于发送注册验证码及取药验证码短信，jwt用于加密用户信息生成token返回给APP。
 
-克隆或下载该项目后，还需要在webapp/resource/下新建文件夹properties，并且新建三个配置文件，分别是**jdbc.properties**、**machine.properties**和**qcloud.properties**，为了信息安全，我gitignoire了。
+克隆或下载该项目后，还需要在webapp/resource/下新建文件夹properties，并且新建四个配置文件，分别是**jdbc.properties**、**machine.properties**和**qcloud.properties**、**redis.properties**，为了信息安全，我gitignoire了。
 
 ### jdbc.properties
 数据库的配置
@@ -72,17 +73,42 @@ take_medicine=XXX
 finish=XXX
 ```
 
+### redis.properties
+
+```
+redis_host=127.0.0.1
+redis_port=6379
+redis_password=
+
+#redis 支持16个数据库（相当于不同用户）可以使不同的应用程序数据彼此分开同时又存储在相同的实例上
+redis_dbIndex=0
+
+#redis 缓存数据过期时间 单位:秒
+redis_expiration=300
+
+#控制一个 pool 最多有多少个状态为 idle 的jedis实例
+redis_maxIdle=300
+
+#控制一个 pool 可分配多少个jedis实例
+redis_maxActive=600
+
+#当borrow一个jedis实例时，最大的等待时间，如果超过等待时间，则直接抛出JedisConnectionException；
+redis_maxWait=1000
+
+#在borrow一个jedis实例时，是否提前进行alidate操作；如果为true，则得到的jedis实例均是可用的；
+redis_testOnBorrow=true
+```
+
 ### 数据库
 >创建表的sql语句在resource/sql/smartbox.sql里，全部执行一遍再自行插入数据。
 
 建议使用Mysql5.6或Mysql5.6以上数据库版本，低版本的对timeStamp列的创建有限制。
 
-一共有五张表，分别是register、user、box、medicine_order和history_order。
-* register 存储手机号和注册验证码
+一共有四张表，分别是user、box、medicine_order和history_order。
 * user 存储手机号、用户名、密码
 * box 存储柜子状态
 * medicine_oder 存储用户的当前药品订单
 * history_order 存储用户的已完成历史订单
 
 表之间的关系如下图。
-![表之间的关系](https://i.loli.net/2019/07/08/5d23194ec0e7f73330.png)
+![表之间的关系](https://i.loli.net/2019/07/24/5d3801ba233a761747.png)
