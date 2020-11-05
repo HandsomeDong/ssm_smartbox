@@ -1,3 +1,4 @@
 src/main/webapp/resource/properties/
 .idea/
 target/
+*.iml
